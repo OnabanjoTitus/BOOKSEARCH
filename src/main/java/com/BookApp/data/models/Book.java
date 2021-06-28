@@ -20,4 +20,5 @@ public class Book {
     private LocalDate publishedDate;
     @Column(nullable = false)
     private String coverImage;
+
 }

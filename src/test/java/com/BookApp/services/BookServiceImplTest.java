@@ -1,7 +1,6 @@
 package com.BookApp.services;
 
 import com.BookApp.data.models.Book;
-import com.BookApp.data.repository.BookRepository;
 import com.BookApp.web.exceptions.BookNameCannotBeEmptyException;
 import com.BookApp.web.exceptions.BookNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +38,15 @@ class BookServiceImplTest {
         List<Book> bookList=bookServices.findByName("i");
         log.info("The books returned are --->{}",bookList);
         assertThat(bookList).hasSize(3);
+    }
+    @Test
+    void testThatBookWithoutNameThrowsException(){
+        assertThrows(BookNameCannotBeEmptyException.class, ()-> bookServices.findByName(""));
+
+    }
+    @Test
+    void testThatBookNotFoundThrowsException(){
+        assertThrows(BookNotFoundException.class, ()-> bookServices.findByName("##"));
+
     }
 }
