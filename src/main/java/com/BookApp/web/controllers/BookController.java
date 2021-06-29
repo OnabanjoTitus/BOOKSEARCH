@@ -36,10 +36,6 @@ public class BookController {
     private ResponseEntity<?> findBooksByName(@PathVariable("id") String bookName) throws BookNotFoundException, BookNameCannotBeEmptyException {
         log.info("The searchKeyword is -->{}",bookName);
         List<Book> bookList = bookServices.findByName(bookName);
-        EntityModel<List<Book>> bookEntityModel=EntityModel.of(
-                bookList,linkTo(methodOn(BookController.class).
-                        bookList()).withRel("books"));
-        log.info("The list of books or book related to the keyword -->{} are -->{}",bookName,bookList);
          return ResponseEntity.ok(bookList);
     }
 }
