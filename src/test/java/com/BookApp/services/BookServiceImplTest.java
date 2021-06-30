@@ -27,7 +27,7 @@ class BookServiceImplTest {
     void tearDown() {
     }
     @Test
-    void testThatWeCanFindAllBooks(){
+    void testThatWeCanFindAllBooks() throws BookNameCannotBeEmptyException {
         List<Book> bookList=bookServices.findAllBooks();
         log.info("The books returned are --->{}",bookList);
         assertThat(bookList).hasSize(3);

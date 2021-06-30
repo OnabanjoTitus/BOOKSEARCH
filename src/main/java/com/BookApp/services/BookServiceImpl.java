@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,8 @@ public class BookServiceImpl implements BookServices {
     private RestTemplate restTemplate;
 
     @Override
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
+    public List<Book> findAllBooks() throws BookNameCannotBeEmptyException {
+        return findByName("a");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class BookServiceImpl implements BookServices {
                     String smallImage = volumeInfo.getImageLinks().toString();
                     book.setCoverImage(smallImage);
                     book.setTitle(title);
-                    book.setAuthor(volumeInfo.getPublisher());
+                    book.setAuthor(volumeInfo.getAuthors().toString());
                     return book;
                 }
         ).collect(Collectors.toList());

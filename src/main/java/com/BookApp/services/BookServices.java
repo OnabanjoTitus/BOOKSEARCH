@@ -9,6 +9,6 @@ import java.util.List;
 
 
 public interface BookServices {
-    List<Book>findAllBooks();
+    List<Book>findAllBooks() throws BookNameCannotBeEmptyException;
     List<Book>findByName(String name) throws BookNameCannotBeEmptyException, BookNotFoundException;
 }

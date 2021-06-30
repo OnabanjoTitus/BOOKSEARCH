@@ -26,7 +26,7 @@ public class BookController {
     @Autowired
     BookServices bookServices;
     @GetMapping("")
-    private ResponseEntity<?>bookList(){
+    private ResponseEntity<?>bookList() throws BookNameCannotBeEmptyException {
         List<Book>books=  bookServices.findAllBooks();
 
         log.info("The list of books returned are-->{}",books);
